@@ -1,0 +1,12 @@
+{
+    "name": "doomy/components",
+    "autoload": {
+      "classmap": ["src/"]
+    },
+    "require": {
+		"php": ">= 7.1",
+        "doomy/extended-nette-form": "^2.3.0",
+        "doomy/base-component": "^1.0.0"
+    },
+	"minimum-stability": "stable"
+}
