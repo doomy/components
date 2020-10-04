@@ -26,7 +26,7 @@ class PopupComponent extends BaseComponent
 
     public function render()
     {
-        $this->template->setFile(dirname(__FILE__) . '/../templates/component/modalContainer.latte');
+        $this->template->setFile(dirname(__FILE__) . '/../templates/modalContainer.latte');
         $this->template->modalHtmlId = $this->modalHtmlId;
         $this->template->modalTitle = $this->modalTitle;
         $this->template->additionalButtons = $this->getAdditionalButtons();
