@@ -8,7 +8,6 @@
 
 namespace Doomy\Components\Component;
 
-use Doomy\BaseComponent;
 use Doomy\Components\FlashMessage;
 use Doomy\ExtendedNetteForm\Form;
 
