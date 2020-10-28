@@ -14,12 +14,12 @@ class DynamicPopupForm extends PopupComponent
     private $fields = [];
     protected $ajax = TRUE;
 
-    public function __construct(Translator $translator)
+    public function __construct()
     {
 
         //$this->injectControl(static::FORM_NAME, $this->getDynamicForm());
         $this->bindForm(static::FORM_NAME, $this->getDynamicForm());
-        parent::__construct($translator);
+        parent::__construct();
     }
 
     public function render()

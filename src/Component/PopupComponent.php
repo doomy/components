@@ -10,6 +10,7 @@ namespace Doomy\Components\Component;
 
 use Doomy\Components\FlashMessage;
 use Doomy\ExtendedNetteForm\Form;
+use Doomy\Translator\Service\DummyTranslator;
 
 class PopupComponent extends BaseComponent
 {
@@ -32,7 +33,11 @@ class PopupComponent extends BaseComponent
         $this->template->hiddenLinks = $this->getHiddenLinks();
         $this->template->displayButtons = $this->displayButtons;
         $this->template->flashes = $this->flashes;
-        $this->template->setTranslator($this->translator);
+        if (isset($this->translator)) {
+            $this->template->setTranslator($this->translator);
+        } else {
+            $this->template->setTranslator(new DummyTranslator());
+        }
         $this->template->boundFormHtmlId = $this->boundFormHtmlId;
         $this->template->uuid = uniqid();
         $this->template->render();

@@ -4,6 +4,7 @@
 namespace Doomy\Components\Component;
 
 use Doomy\Components\ComponentTemplateNotFoundException;
+use Doomy\Translator\Service\DummyTranslator;
 use Nette\Application\UI\Control;
 use Doomy\Translator\Service\Translator;
 use Nette\InvalidStateException;
@@ -13,22 +14,25 @@ class BaseComponent extends Control
 {
     const EVENT_DYNAMIC_FORM_SAVE = 'EVENT_SAVE';
 
-    protected $translator;
+    protected Translator $translator;
     protected $events = [];
     protected $session;
     protected $snippetName = "";
     protected $translatorInitialized = FALSE;
     private $templatePath;
 
-    public function __construct(Translator $translator)
+    public function __construct()
     {
-        $this->translator = $translator;
     }
 
     public function render()
     {
         $this->template->setFile($this->getTemplatePath());
-        $this->template->setTranslator($this->translator);
+        if (isset($this->translator)) {
+            $this->template->setTranslator($this->translator);
+        } else {
+            $this->template->setTranslator(new DummyTranslator());
+        }
         $this->template->basePath = $this->getPresenter()->getHttpRequest()->url->basePath;
         $this->template->render();
     }
@@ -64,11 +68,14 @@ class BaseComponent extends Control
 
     public function flashMessage($message, $type = 'info'): \stdClass
     {
-        if (!$this->translatorInitialized) {
-            $this->initializeTranslator();
-            $this->translatorInitialized = TRUE;
+        if (isset($this->translator)) {
+            if (!$this->translatorInitialized) {
+                $this->initializeTranslator();
+                $this->translatorInitialized = TRUE;
+            }
+
+            $message = $this->translator->translate($message);
         }
-        $message = $this->translator->translate($message);
         return parent::flashMessage($message, $type);
     }
 
@@ -131,5 +138,10 @@ class BaseComponent extends Control
     public function setTemplatePath($templatePath)
     {
         $this->templatePath = $templatePath;
+    }
+
+    public function setTranslator(Translator $translator): void
+    {
+        $this->translator = $translator;
     }
 }
