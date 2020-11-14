@@ -8,13 +8,14 @@ use Doomy\Translator\Service\DummyTranslator;
 use Nette\Application\UI\Control;
 use Doomy\Translator\Service\Translator;
 use Nette\InvalidStateException;
+use Nette\Localization\ITranslator;
 use function defined;
 
 class BaseComponent extends Control
 {
     const EVENT_DYNAMIC_FORM_SAVE = 'EVENT_SAVE';
 
-    protected Translator $translator;
+    protected ITranslator $translator;
     protected $events = [];
     protected $session;
     protected $snippetName = "";
