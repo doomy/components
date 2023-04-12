@@ -10,7 +10,7 @@ class DynamicPopupForm extends PopupComponent
     const EVENT_DYNAMIC_FORM_SAVE = 'event_dynamic_form_save';
     const FORM_NAME = 'dynamicForm';
 
-    private $dynamicForm = NULL;
+    private ?Form $dynamicForm = NULL;
     private $fields = [];
     protected $ajax = TRUE;
 
@@ -24,6 +24,7 @@ class DynamicPopupForm extends PopupComponent
 
     public function render()
     {
+        $this->addComponent($this->getDynamicForm(), 'dynamicPopupForm');
         parent::render();
     }
 
