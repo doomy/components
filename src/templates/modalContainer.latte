@@ -1,7 +1,7 @@
 {layout 'modal.latte'}
 
 {block modalHtmlId}{$modalHtmlId}{/block}
-{block modalTitle}{_}{$modalTitle}{/_}{/block}
+{block modalTitle}{translate}{$modalTitle}{/translate}{/block}
 {block modalContent}
     {snippet modalComponent}
         {foreach $control->getComponents() as $component}
@@ -25,7 +25,7 @@
                     {else}
                         href="{link reset!}"
                     {/if}
-            >{_}Reset{/_}</a>
+            >{translate}Reset{/translate}</a>
             {foreach $additionalButtons as $button}
                 <a class="btn btn-primary" href="{$button['link']}">
                     {$button['title']}
@@ -38,7 +38,7 @@
                         href="{link save!}"
                     {/if}
                     >
-                {_}Save{/_}
+                {translate}Save{/translate}
             </a>
             <script>
                 $('#modalSave').click(function () {
