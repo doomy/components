@@ -11,8 +11,7 @@ class DynamicPopupForm extends PopupComponent
     const FORM_NAME = 'dynamicForm';
 
     private ?Form $dynamicForm = NULL;
-    private $fields = [];
-    protected $ajax = TRUE;
+    protected bool $ajax = TRUE;
 
     public function __construct()
     {
@@ -20,12 +19,6 @@ class DynamicPopupForm extends PopupComponent
         //$this->injectControl(static::FORM_NAME, $this->getDynamicForm());
         $this->bindForm(static::FORM_NAME, $this->getDynamicForm());
         parent::__construct();
-    }
-
-    public function render()
-    {
-        $this->addComponent($this->getDynamicForm(), 'dynamicPopupForm');
-        parent::render();
     }
 
     public function handleRedraw() {
