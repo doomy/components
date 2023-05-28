@@ -24,6 +24,8 @@ class PopupComponent extends BaseComponent
     private $boundFormHtmlId;
     private $flashes = [];
 
+    private readonly ?string $closeActionLink;
+
     public function render()
     {
         $this->template->setFile(dirname(__FILE__) . '/../templates/modalContainer.latte');
@@ -38,6 +40,7 @@ class PopupComponent extends BaseComponent
         } else {
             $this->template->setTranslator(new DummyTranslator());
         }
+        $this->template->closeActionLink = $this->closeActionLink ?? null;
         $this->template->boundFormHtmlId = $this->boundFormHtmlId;
         $this->template->uuid = uniqid();
         $this->template->render();
@@ -59,6 +62,11 @@ class PopupComponent extends BaseComponent
 
     public function handleSave()
     {
+    }
+
+    public function setCloseActionLink(string $closeActionLink): void
+    {
+        $this->closeActionLink = $closeActionLink;
     }
 
     public function injectControl($name, $control)

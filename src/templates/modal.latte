@@ -13,7 +13,10 @@ after bootstrap update
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{include modalTitle}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                {if isset($closeActionLink)}
+                    <a href="{$closeActionLink}" class="hidden" id="{include modalHtmlId}-modalCloseActionLink"></a>
+                {/if}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.getElementById('{include modalHtmlId}-modalCloseActionLink').click();">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
