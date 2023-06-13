@@ -24,7 +24,7 @@ class PopupComponent extends BaseComponent
     private $boundFormHtmlId;
     private $flashes = [];
 
-    private readonly ?string $closeActionLink;
+    private ?string $closeActionLink;
 
     public function render()
     {
