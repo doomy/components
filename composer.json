@@ -14,7 +14,7 @@
     ],
     "require": {
 		"php": ">= 7.4",
-        "doomy/extended-nette-form": "^2.3.0",
+        "doomy/extended-nette-form": "^2.3.0|^3.0",
         "doomy/translator": "^1.2.0"
     },
 	"minimum-stability": "stable"
